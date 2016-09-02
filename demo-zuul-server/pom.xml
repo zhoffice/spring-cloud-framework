@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cnwidsom.service</groupId>
-	<artifactId>demo-zuul</artifactId>
+	<artifactId>demo-zulu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>zulu</name>
+	<name>zuul</name>
 	<url>http://maven.apache.org</url>
 	<description>
 		边缘服务工具，是提供动态路由，监控，弹性，安全等的边缘服务。
