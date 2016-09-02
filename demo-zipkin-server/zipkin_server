@@ -1,0 +1,1 @@
+java -jar zipkin-web-1.28.1-20160104.090947-7-all.jar -zipkin.web.port=:9412 -zipkin.web.rootUrl=/ -zipkin.web.query.dest=localhost:9411

@@ -1,0 +1,50 @@
+server:
+  port: 9411
+
+spring:
+  zipkin:
+    baseUrl: http://localhost:9411
+---
+management:
+  context-path: /
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'
+    
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          #uri: https://github.com/spring-cloud-samples/config-repo
+#          #basedir: target/config
+#          uri: classpath:*
+
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:/
+---
+spring:
+  profiles: 
+    active: native
+    
+---
+spring:
+  application:
+    name: zipkin-server
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
