@@ -10,7 +10,7 @@
 	<groupId>com.cnwidsom</groupId>
 	<artifactId>demo-eureka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Archetype - demo</name>
+	<name>eureka</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencyManagement>

@@ -11,7 +11,7 @@
 	<groupId>com.cnwidsom.service</groupId>
 	<artifactId>demo-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Archetype - demo</name>
+	<name>demo-service</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
