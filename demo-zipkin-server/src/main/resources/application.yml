@@ -19,6 +19,22 @@ eureka:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
 
+zipkin:
+  storage:
+    type: mysql
+
+spring:
+  sleuth:
+      enabled: false
+  datasource:
+    schema: classpath:/mysql.sql
+    url: jdbc:mysql://localhost:3306/zipkin?autoReconnect=true
+    username: root
+    password: zhang_0013
+    driver-class-name: com.mysql.jdbc.Driver
+    initialize: true
+    continue-on-error: true
+---
 #spring:
 #  cloud:
 #    config:

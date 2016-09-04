@@ -38,10 +38,10 @@ import com.cnwidsom.common.trace.DistributeTracer;
 public class Application {
 	private static final Logger log = Logger.getLogger(Application.class.getName());
 
-	// @Bean
-	// public AlwaysSampler defaultSampler() {
-	// return new AlwaysSampler();
-	// }
+	@Bean
+	public AlwaysSampler defaultSampler() {
+		return new AlwaysSampler();
+	}
 
 	@Bean
 	public DistributeTracer sleuthTracer(Sampler sampler, Random random, SpanNamer spanNamer, SpanLogger spanLogger,

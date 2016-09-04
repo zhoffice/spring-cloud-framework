@@ -51,6 +51,11 @@ public class Application {
 	private DemoServiceProxy demoServiceProxy;
 
 	@Bean
+	public AlwaysSampler defaultSampler() {
+		return new AlwaysSampler();
+	}
+
+	@Bean
 	public DistributeTracer sleuthTracer(Sampler sampler, Random random, SpanNamer spanNamer, SpanLogger spanLogger,
 			SpanReporter spanReporter) {
 		return new DistributeTracer(sampler, random, spanNamer, spanLogger, spanReporter);
