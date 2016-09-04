@@ -1,13 +1,9 @@
 server:
-  port: 9411
+  port: 8090
 
-spring:
-  zipkin:
-    baseUrl: http://localhost:9411
----
 management:
   context-path: /
-
+  
 logging:
   level:
     com.netflix.discovery: 'OFF'
@@ -18,23 +14,35 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
-#zipkin mysql配置
-zipkin:
-  storage:
-    type: mysql  # default is mem (in-memory)
+
 
 spring:
   sleuth:
-      enabled: false
-  datasource:
-    schema: classpath:/mysql.sql
-    url: jdbc:mysql://localhost:3306/zipkin?autoReconnect=true
-    username: root
-    password: zhang_0013
-    driver-class-name: com.mysql.jdbc.Driver
-    initialize: true
-    continue-on-error: true
+    feign:
+      enabled: true
 ---
+feign:
+  hystrix:
+    enabled: true
+
+security:
+  user:
+    name: root
+    password: 123456
+    
+spring:
+  oauth2:
+    client:
+      clientId: bd1c0a783ccdd1c9b9e4
+      clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
+---
+    
 #spring:
 #  cloud:
 #    config:
@@ -54,11 +62,19 @@ spring:
 spring:
   profiles: 
     active: native
-    
+
+---
+spring:
+  zipkin:
+    baseUrl: http://localhost:9411
+    enabled: true
+    compression:
+      enabled: false
+    flush-interval: 1
 ---
 spring:
   application:
-    name: zipkin-server
+    name: demo-oauth2-server
     
 eureka:
   client:

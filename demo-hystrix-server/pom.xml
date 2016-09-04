@@ -4,7 +4,7 @@
 	<groupId>com.cnwidsom.service</groupId>
 	<artifactId>demo-hystrix</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hystrix</name>
+	<name>hystrix-server</name>
 	<url>http://maven.apache.org</url>
 	<description>
 		容错管理工具，旨在通过控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。

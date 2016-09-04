@@ -4,7 +4,7 @@
 	<groupId>com.cnwidsom.service</groupId>
 	<artifactId>demo-zipkin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>zipkin</name>
+	<name>zipkin-server</name>
 	<url>http://maven.apache.org</url>
 	<description>
 		接收调用数据并且展示出来

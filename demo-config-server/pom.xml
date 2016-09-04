@@ -10,7 +10,7 @@
 	<groupId>com.cnwidsom</groupId>
 	<artifactId>demo-config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Archetype - demo</name>
+	<name>config-server</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencyManagement>
