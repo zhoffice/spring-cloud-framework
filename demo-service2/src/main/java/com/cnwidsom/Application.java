@@ -3,6 +3,7 @@ package com.cnwidsom;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +14,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.sleuth.Sampler;
 import org.springframework.cloud.sleuth.SpanExtractor;
 import org.springframework.cloud.sleuth.SpanInjector;
+import org.springframework.cloud.sleuth.SpanNamer;
+import org.springframework.cloud.sleuth.SpanReporter;
+import org.springframework.cloud.sleuth.log.SpanLogger;
 import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -24,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cnwidsom.common.trace.CustomHttpServletRequestSpanExtractor;
 import com.cnwidsom.common.trace.CustomHttpServletResponseSpanInjector;
+import com.cnwidsom.common.trace.DistributeTracer;
 
 @EnableCircuitBreaker
 @RestController
@@ -32,9 +38,15 @@ import com.cnwidsom.common.trace.CustomHttpServletResponseSpanInjector;
 public class Application {
 	private static final Logger log = Logger.getLogger(Application.class.getName());
 
+	// @Bean
+	// public AlwaysSampler defaultSampler() {
+	// return new AlwaysSampler();
+	// }
+
 	@Bean
-	public AlwaysSampler defaultSampler() {
-		return new AlwaysSampler();
+	public DistributeTracer sleuthTracer(Sampler sampler, Random random, SpanNamer spanNamer, SpanLogger spanLogger,
+			SpanReporter spanReporter) {
+		return new DistributeTracer(sampler, random, spanNamer, spanLogger, spanReporter);
 	}
 
 	@Bean
