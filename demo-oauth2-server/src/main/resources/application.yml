@@ -1,13 +1,21 @@
 server:
   port: 8090
 
+spring:
+  application:
+    name: demo-oauth2-server
+  profiles: 
+    active: native
+---
+
+
 management:
   context-path: /
   
 logging:
   level:
     com.netflix.discovery: 'OFF'
-    org.springframework.cloud: 'DEBUG'
+    org.springframework.security: 'DEBUG'
     
 eureka:
   instance:
@@ -17,31 +25,39 @@ eureka:
 
 
 spring:
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:/
   sleuth:
     feign:
       enabled: true
----
-feign:
-  hystrix:
-    enabled: true
-
-security:
-  user:
-    name: root
-    password: 123456
-    
-spring:
   oauth2:
     client:
       clientId: bd1c0a783ccdd1c9b9e4
       clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1
-      accessTokenUri: https://github.com/login/oauth/access_token
-      userAuthorizationUri: https://github.com/login/oauth/authorize
+      accessTokenUri: http://localhost:8090/oauth/token
+      userAuthorizationUri: http://localhost:8090/oauth/authorize
       clientAuthenticationScheme: form
     resource:
-      userInfoUri: https://api.github.com/user
+      userInfoUri: https://localhost:8090/user
       preferTokenInfo: false
+#  zipkin:
+#    baseUrl: http://localhost:9411
+#    enabled: true
+#    compression:
+#      enabled: false
+#    flush-interval: 1
 ---
+#feign:
+#  hystrix:
+#    enabled: true
+
+#security:
+#  user:
+#    name: root
+#    password: 123456
     
 #spring:
 #  cloud:
@@ -52,30 +68,7 @@ spring:
 #          #basedir: target/config
 #          uri: classpath:*
 
-spring:
-  cloud:
-    config:
-      server:
-        native:
-          searchLocations: classpath:/
----
-spring:
-  profiles: 
-    active: native
-
----
-spring:
-  zipkin:
-    baseUrl: http://localhost:9411
-    enabled: true
-    compression:
-      enabled: false
-    flush-interval: 1
----
-spring:
-  application:
-    name: demo-oauth2-server
-    
+  
 eureka:
   client:
     serviceUrl:
