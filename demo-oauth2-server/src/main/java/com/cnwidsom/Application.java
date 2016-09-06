@@ -78,7 +78,7 @@ public class Application extends WebMvcConfigurerAdapter {
 
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
-			http.requestMatchers().antMatchers("/", "/admin/beans").and().authorizeRequests().anyRequest()
+			http.requestMatchers().antMatchers("/user").and().authorizeRequests().anyRequest()
 					.access("#oauth2.hasScope('read')");
 		}
 
