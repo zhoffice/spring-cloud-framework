@@ -15,25 +15,26 @@ eureka:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
 
-#spring:
-#  cloud:
-#    config:
-#      server:
-#        git:
-#          #uri: https://github.com/spring-cloud-samples/config-repo
-#          #basedir: target/config
-#          uri: classpath:*
-
 spring:
   cloud:
     config:
       server:
-        native:
-          searchLocations: classpath:/
+        git:
+          uri: file:///D:/GitProject/spring-cloud-framework/demo-config-file
+#          uri: https://github.com/making/config-repo
+          #basedir: target/config
+          #uri: classpath:*
+
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          searchLocations: classpath:/
 ---
 spring:
   profiles: 
-    active: native
+    active: default
     
 ---
 spring:
