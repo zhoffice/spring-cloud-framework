@@ -1,6 +1,48 @@
+server:
+  port: 8080
+
+management:
+  context-path: /
+  
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'
+    
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+    serviceUrl:
+      defaultZone: ${eureka.addr}
+
+feign:
+  hystrix:
+    enabled: true
+
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          searchLocations: classpath:/
 spring:
-  profiles: 
-    active: dev
   application:
     name: demo-service
+  cloud:
+    config:
+      label: master # optional
+      uri: http://localhost:8888 # optional
+      profile: ${spring.profiles.active}
+  zipkin:
+    baseUrl: ${zipkin.addr}
+    enabled: true
+    compression:
+      enabled: false
+    flush-interval: 1
+  sleuth:
+    feign:
+      enabled: true
 
