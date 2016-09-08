@@ -14,34 +14,18 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
 
 spring:
+  application:
+    name: configserver
+  profiles: 
+    active: default
   cloud:
     config:
       server:
         git:
-          uri: file:///D:/GitProject/spring-cloud-framework/demo-config-file
-#          uri: https://github.com/making/config-repo
-          #basedir: target/config
-          #uri: classpath:*
+          uri: https://github.com/zhoffice/spring-cloud-config
 
-#spring:
-#  cloud:
-#    config:
-#      server:
-#        native:
-#          searchLocations: classpath:/
----
-spring:
-  profiles: 
-    active: default
-    
----
-spring:
-  application:
-    name: configserver
-    
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka

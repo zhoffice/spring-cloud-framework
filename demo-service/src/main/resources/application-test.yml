@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+management:
+  context-path: /
+  
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'
+    
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  client:
+    serviceUrl:
+      defaultZone: ${eureka.addr}
+
+feign:
+  hystrix:
+    enabled: true
+
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          searchLocations: classpath:/
+spring:
+  cloud:
+    config:
+      label: master # optional
+      uri: http://www.baidu.com:8889 # optional
+      profile: test
+  zipkin:
+    baseUrl: http://localhost:9411
+    enabled: true
+    compression:
+      enabled: false
+    flush-interval: 1
+  sleuth:
+    feign:
+      enabled: true
+
